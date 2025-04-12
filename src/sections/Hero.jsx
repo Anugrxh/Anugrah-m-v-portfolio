@@ -2,14 +2,32 @@ import React from "react";
 import { words } from "../constants/index.js"; // Importing words from constants
 import Button from "../components/Button.jsx";
 import HeroExperience from "../components/HeroModels/HeroExperience.jsx"; // Importing HeroExperience component
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import AnimatedCounter from "../components/AnimatedCounter.jsx";
 
 const Hero = () => {
+  useGSAP(() => {
+    gsap.fromTo(
+      ".hero-text h1",
+      {
+        y: 50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        stagger: 0.5,
+        ease: "power2.out",
+      }
+    );
+  });
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
         <img src="/images/bg.png" alt="Hero Image" />
-      </div> 
+      </div>
 
       <div className="hero-layout">
         {/* Left  Hero content  */}
@@ -39,12 +57,16 @@ const Hero = () => {
               <h1>into Real Projects</h1>
               <h1>that deliver results</h1>
             </div>
-            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none"> Hi, iam Anugrah , Developer based in India with a passion for code.</p>
-                    <Button 
-                    className="md:w-80 md:h-16 w-60 h-12"
-                    id="button"
-                    text="See my Work"
-                    />
+            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
+              {" "}
+              Hi, iam Anugrah , Developer based in India with a passion for
+              code.
+            </p>
+            <Button
+              className="md:w-80 md:h-16 w-60 h-12"
+              id="button"
+              text="See my Work"
+            />
           </div>
         </header>
 
@@ -52,15 +74,11 @@ const Hero = () => {
 
         <figure>
           <div className="hero-3d-layout">
-          <HeroExperience />
-
+            <HeroExperience />
           </div>
         </figure>
-
-
-
-
       </div>
+      <AnimatedCounter/>
     </section>
   );
 };
