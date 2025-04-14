@@ -250,18 +250,22 @@ const socialImgs = [
   {
     name: "insta",
     imgPath: "/images/insta.png",
+    link: "https://www.instagram.com/anu_grxhh_?igsh=MXcxbTd0anZsa2t2cw==", // Add your Instagram link here
   },
   {
     name: "fb",
     imgPath: "/images/fb.png",
+    link: "https://www.facebook.com/share/1C31sixNwa/", // Add your Facebook link here
   },
   {
     name: "x",
-    imgPath: "/images/x.png",
+    imgPath: "/images/gittt.png",
+    link: "https://github.com/Anugrxh", // Add your Twitter/X link here
   },
   {
     name: "linkedin",
     imgPath: "/images/linkedin.png",
+    link: "https://www.linkedin.com/in/anugrah-m-v-187203271/", // Add your LinkedIn link here
   },
 ];
 
