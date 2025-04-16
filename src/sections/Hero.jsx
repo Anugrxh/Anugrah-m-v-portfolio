@@ -1,28 +1,35 @@
-import React from "react";
-import { words } from "../constants/index.js"; // Importing words from constants
+import React, { lazy, Suspense } from "react";
+import { words } from "../constants/index.js";
 import Button from "../components/Button.jsx";
-import HeroExperience from "../components/HeroModels/HeroExperience.jsx"; // Importing HeroExperience component
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import AnimatedCounter from "../components/AnimatedCounter.jsx";
+
+import Loading from "../components/Loading.jsx"; // Import your loading component
+
+const HeroExperienceLazy = lazy(() => import("../components/HeroModels/HeroExperience.jsx"));
+const AnimatedCounterLazy = lazy(() => import("../components/AnimatedCounter.jsx"));
 
 const Hero = () => {
   useGSAP(() => {
-    gsap.fromTo(
-      ".hero-text h1",
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.5,
-        stagger: 0.5,
-        ease: "power2.out",
-      }
-    );
-  });
+    const ctx = gsap.context(() => { // Create a gsap context
+      gsap.fromTo(
+        ".hero-text h1",
+        {
+          y: 50,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.5,
+          stagger: 0.5,
+          ease: "power2.out",
+        }
+      );
+    });
+    return () => ctx.revert(); // Cleanup the gsap context
+  }, []);
+
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
@@ -30,7 +37,7 @@ const Hero = () => {
       </div>
 
       <div className="hero-layout">
-        {/* Left  Hero content  */}
+        {/* Left Hero content */}
         <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
           <div className="flex flex-col gap-7">
             <div className="hero-text">
@@ -58,27 +65,25 @@ const Hero = () => {
               <h1>that deliver results</h1>
             </div>
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              {" "}
               Hi, iam Anugrah , Developer based in India with a passion for
               code.
             </p>
-            <Button
-              className="md:w-80 md:h-16 w-60 h-12"
-              id="button"
-              text="See my Work"
-            />
+            <Button className="md:w-80 md:h-16 w-60 h-12" id="button" text="See my Work" />
           </div>
         </header>
 
-        {/* Right  Hero content  */}
-
+        {/* Right Hero content */}
         <figure>
           <div className="hero-3d-layout">
-            <HeroExperience />
+            <Suspense fallback={<Loading />}>
+              <HeroExperienceLazy />
+            </Suspense>
           </div>
         </figure>
       </div>
-      <AnimatedCounter/>
+      <Suspense fallback={<Loading />}>
+        <AnimatedCounterLazy />
+      </Suspense>
     </section>
   );
 };

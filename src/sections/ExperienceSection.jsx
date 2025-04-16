@@ -1,3 +1,4 @@
+import React from 'react';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -32,6 +33,8 @@ const ExperienceSection = () => {
           trigger: card,
           // Trigger the animation when the card is 80% down the screen
           start: "top 80%",
+          // Optimization: Add markers for debugging
+          // markers: process.env.NODE_ENV === 'development',
         },
       });
     });
@@ -57,8 +60,14 @@ const ExperienceSection = () => {
           // from 1 to 0 as the user scrolls up the screen
           gsap.to(".timeline", {
             scaleY: 1 - self.progress,
+            // Optimization:  Use the scroll position directly instead of nesting gsap.to
+            //  This can be slightly more performant.
+            // scaleY: Math.max(0, 1 - self.progress), // Ensure scaleY doesn't go below 0
           });
         },
+        // Optimization: Add markers for debugging
+        // markers: process.env.NODE_ENV === 'development',
+        scrub: false, // Consider adding scrub: 0.5 for smoother animation
       },
     });
 
@@ -84,6 +93,8 @@ const ExperienceSection = () => {
           trigger: text,
           // Trigger the animation when the text is 60% down the screen
           start: "top 60%",
+          // Optimization: Add markers for debugging
+          // markers: process.env.NODE_ENV === 'development',
         },
       });
     }, "<"); // position parameter - insert at the start of the animation
@@ -101,10 +112,10 @@ const ExperienceSection = () => {
         />
         <div className="mt-32 relative">
           <div className="relative z-50 xl:space-y-32 space-y-10">
-            {expCards.map((card) => (
+            {expCards.map((card, index) => ( // Added index
               <div key={card.title} className="exp-card-wrapper">
                 <div className="xl:w-2/6">
-                  <GlowCard card={card}>
+                  <GlowCard card={card} index={index}> {/* Pass index */}
                     <div>
                       <img src={card.imgPath} alt="exp-img" />
                     </div>

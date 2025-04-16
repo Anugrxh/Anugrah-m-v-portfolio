@@ -11,7 +11,7 @@ const HeroExperience = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
-   <Canvas camera={{position:[0,0,15],fov:45}}>
+    <Canvas camera={{position:[0,0,15],fov:45}}>
   
     <OrbitControls 
       enablePan={false}
@@ -23,14 +23,14 @@ const HeroExperience = () => {
     />
     <HeroLights/>
     <Particles count={300} />
-   <group 
+    <group 
     scale={isMobile ? 0.7 : isTablet ? 0.9 : 1} 
     position={[0,-3.5,0]}
     rotation = {[0,-Math.PI/4,0]}
     >
-   <Room/>
-   </group>
-   </Canvas>
+    <Room/>
+    </group>
+    </Canvas>
   )
 }
 

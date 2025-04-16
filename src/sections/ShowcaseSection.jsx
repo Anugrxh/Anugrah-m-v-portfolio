@@ -48,16 +48,17 @@ const AppShowcase = () => {
       <div className="w-full">
         <div className="showcaselayout">
           <div ref={rydeRef} className="first-project-wrapper">
+            <a href="https://github.com/Anugrxh">
             <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde App Interface" />
+              <img src="/images/ppp.png" alt="Ryde App Interface" />
             </div>
+            </a>
             <div className="text-content">
               <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
+               A University Fine-arts live result app for students and teachers with a user-friendly interface
               </h2>
               <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
+                An app built with React , Firebase, & TailwindCSS for a fast,
                 user-friendly experience.
               </p>
             </div>
@@ -65,20 +66,24 @@ const AppShowcase = () => {
 
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={libraryRef}>
+              <a href="https://github.com/Anugrxh">
               <div className="image-wrapper bg-[#FFEFDB]">
                 <img
-                  src="/images/project2.png"
+                  src="/images/p1.png"
                   alt="Library Management Platform"
                 />
               </div>
-              <h2>The Library Management Platform</h2>
+              </a>
+              <h2>Wedding Card Generating Website</h2>
             </div>
 
             <div className="project" ref={ycDirectoryRef}>
+              <a href="https://github.com/Anugrxh">
               <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/project3.png" alt="YC Directory App" />
+                <img src="/images/p3.png" alt="YC Directory App" />
               </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+              <h2>Quick Hire - A Jobseeker website</h2>
+              </a>
             </div>
           </div>
         </div>
